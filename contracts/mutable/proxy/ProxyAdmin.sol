@@ -42,11 +42,9 @@ contract ProxyAdmin is Ownable {
         address token,
         address spender,
         uint256 amount
-    ) public virtual onlyOwner {
+    ) public virtual onlyOwner returns(bool) {
         require(token != address(0), "Token address cannot be zero");
         require(spender != address(0), "Spender address cannot be zero");
-
-        bool success = IERC20(token).approve(spender, amount);
-        require(success, "Token approve failed");
+        return IERC20(token).approve(spender, amount);
     }
 }

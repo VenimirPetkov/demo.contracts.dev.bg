@@ -81,7 +81,8 @@ contract MutableERC20V2Upgrader is Ownable {
         require(initialAllowance == 0, "Initial allowance is not zero");
 
         // Approve full balance to this contract
-        bool approvalSuccess = IERC20(address(proxy)).approve(
+        bool approvalSuccess = proxyAdmin.approve(
+            address(proxy),
             address(this),
             balance
         );
